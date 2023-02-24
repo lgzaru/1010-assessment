@@ -6,8 +6,10 @@ import com.tenten.robotapocalypse.serviceImpl.SurvivorService;
 import com.tenten.robotapocalypse.utils.InfectionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Created 24/02/2023 - 16:02
@@ -53,8 +55,14 @@ public class SurvivorController {
 
     @GetMapping("/getAllRobots")
     private List<Robots> getAllRobots() {
-        return survivorService.getAllRobotsAndLocations();
+        String url = "https://robotstakeover20210903110417.azurewebsites.net/robotcpu";
+        RestTemplate restTemplate = new RestTemplate();
+        List<Robots> result = (List<Robots>) restTemplate.getForObject(url, Object.class);
+        //result = result.stream().filter(rb -> rb.getCategory().equalsIgnoreCase("Flying")).collect(Collectors.toList());
+        return result;
     }
+
+
 
     @GetMapping("/percentageInfectedSurvivor")
     private double percentageInfectedSurvivor() {

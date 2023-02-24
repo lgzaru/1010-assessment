@@ -16,7 +16,6 @@ public interface SurvivorService {
     SurvivorDto updateSurvivor(Long survivorId, SurvivorDto survivorDto);
     SurvivorDto flagSurvivor (Long survivorId);
     SurvivorDto getSurvivorByID(Long survivorId);
-    List<Robots> getAllRobotsAndLocations ();
     List<SurvivorDto> getAllSurvivors();
     double percentageInfectedSurvivor();
     double percentageNonInfectedSurvivor();

@@ -19,12 +19,10 @@ import java.util.List;
 public class SurvivorServiceImpl implements SurvivorService {
     //  final Logger logger = LoggerFactory.getLogger(SurvivorServiceImpl.class);
     private final SurvivorRepository survivorRepository;
-    private final RobotCPUSystem robotCPUSystem;
 
     @Autowired
-    public SurvivorServiceImpl(SurvivorRepository survivorRepository, RobotCPUSystem robotCPUSystem) {
+    public SurvivorServiceImpl(SurvivorRepository survivorRepository) {
         this.survivorRepository = survivorRepository;
-        this.robotCPUSystem = robotCPUSystem;
     }
 
     @Override
@@ -55,12 +53,6 @@ public class SurvivorServiceImpl implements SurvivorService {
         }
         return survivorRepository.save(dbDto);
     }
-
-    @Override
-    public List<Robots> getAllRobotsAndLocations() {
-        return robotCPUSystem.getAllRobots();
-    }
-
 
     @Override
     public List<SurvivorDto> getAllSurvivors() {
