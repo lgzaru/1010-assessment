@@ -3,6 +3,7 @@ package com.tenten.robotapocalypse.Controller;
 import com.tenten.robotapocalypse.domain.Robots;
 import com.tenten.robotapocalypse.domain.SurvivorDto;
 import com.tenten.robotapocalypse.serviceImpl.SurvivorService;
+import com.tenten.robotapocalypse.utils.InfectionStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,6 +55,33 @@ public class SurvivorController {
     private List<Robots> getAllRobots() {
         return survivorService.getAllRobotsAndLocations();
     }
+
+    @GetMapping("/percentageInfectedSurvivor")
+    private double percentageInfectedSurvivor() {
+        return survivorService.percentageInfectedSurvivor();
+    }
+
+    @GetMapping("/percentageNonInfectedSurvivor")
+    private double percentageNonInfectedSurvivor() {
+        return survivorService.percentageNonInfectedSurvivor();
+    }
+
+    @GetMapping("/allInfected")
+    private List<SurvivorDto> allInfected() {
+        List<SurvivorDto> totalSurvivors = survivorService.getAllSurvivors();
+        List<SurvivorDto> infectedSurvivors = totalSurvivors.stream()
+                .filter(infected -> infected.getFlagStatus().equals(InfectionStatus.INFECTED.name())).toList();
+        return infectedSurvivors;
+    }
+
+    @GetMapping("/allNonInfected")
+    private List<SurvivorDto> allNonInfected() {
+        List<SurvivorDto> totalSurvivors = survivorService.getAllSurvivors();
+        List<SurvivorDto> nonInfectedSurvivors = totalSurvivors.stream()
+                .filter(infected -> infected.getFlagStatus().equals(InfectionStatus.NOT_INFECTED.name())).toList();
+        return nonInfectedSurvivors;
+    }
+
 
 
 }

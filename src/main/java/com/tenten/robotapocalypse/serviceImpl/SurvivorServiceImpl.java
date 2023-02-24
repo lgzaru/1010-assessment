@@ -67,14 +67,14 @@ public class SurvivorServiceImpl implements SurvivorService {
         return survivorRepository.findAll();
     }
 
-
+    @Override
     public double percentageInfectedSurvivor() {
         List<SurvivorDto> totalSurvivors = getAllSurvivors();
         List<SurvivorDto> infectedSurvivors = totalSurvivors.stream()
                 .filter(infected -> infected.getFlagStatus().equals(InfectionStatus.INFECTED.name())).toList();
         return infectedSurvivors.size() * 100 / totalSurvivors.size();
     }
-
+    @Override
     public double percentageNonInfectedSurvivor() {
         List<SurvivorDto> totalSurvivors = getAllSurvivors();
         List<SurvivorDto> infectedSurvivors = totalSurvivors.stream()
