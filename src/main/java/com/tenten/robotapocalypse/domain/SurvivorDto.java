@@ -47,7 +47,7 @@ public class SurvivorDto {
     private String water;
 
     @Column(name = "food", nullable = false)
-    private Integer food;
+    private String food;
 
     @Column(name = "medication", nullable = false)
     private String medication;

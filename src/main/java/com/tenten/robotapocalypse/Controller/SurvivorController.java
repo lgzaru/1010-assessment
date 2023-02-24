@@ -30,9 +30,9 @@ public class SurvivorController {
         return survivorService.addSurvivor(survivorDto);
     }
 
-    @PutMapping("/updateSurvivor")
-    private SurvivorDto updateSurvivor(@RequestBody SurvivorDto survivorDto) {
-        return survivorService.updateSurvivor(survivorDto);
+    @PutMapping("/updateSurvivor/{survivorID}")
+    private SurvivorDto updateSurvivor(@PathVariable Long survivorID, @RequestBody SurvivorDto survivorDto) {
+        return survivorService.updateSurvivor(survivorID, survivorDto);
     }
 
     @GetMapping("/getAllSurvivors")
@@ -40,7 +40,7 @@ public class SurvivorController {
         return survivorService.getAllSurvivors();
     }
 
-    @GetMapping("/flagSurvivor/{survivorID}")
+    @PostMapping("/flagSurvivor/{survivorID}")
     private SurvivorDto flagSurvivor(@PathVariable Long survivorID) {
         return survivorService.flagSurvivor(survivorID);
     }

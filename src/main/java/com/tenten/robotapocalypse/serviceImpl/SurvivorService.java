@@ -13,7 +13,7 @@ import java.util.Optional;
  */
 public interface SurvivorService {
     SurvivorDto addSurvivor(SurvivorDto survivorDto);
-    SurvivorDto updateSurvivor(SurvivorDto survivorDto);
+    SurvivorDto updateSurvivor(Long survivorId, SurvivorDto survivorDto);
     SurvivorDto flagSurvivor (Long survivorId);
     SurvivorDto getSurvivorByID(Long survivorId);
     List<Robots> getAllRobotsAndLocations ();

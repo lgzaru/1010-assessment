@@ -38,8 +38,8 @@ public class SurvivorServiceImpl implements SurvivorService {
     }
 
     @Override
-    public SurvivorDto updateSurvivor(SurvivorDto survivorDto) {
-        SurvivorDto dbDto = survivorRepository.getById(survivorDto.getId());
+    public SurvivorDto updateSurvivor(Long survivorId,  SurvivorDto survivorDto) {
+        SurvivorDto dbDto = survivorRepository.getById(survivorId);
         dbDto.setLatitude(survivorDto.getLatitude());
         dbDto.setLongitude(survivorDto.getLongitude());
         return survivorRepository.save(dbDto);
